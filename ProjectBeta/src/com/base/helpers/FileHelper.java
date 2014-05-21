@@ -9,7 +9,7 @@ import org.newdawn.slick.SlickException;
 
 public class FileHelper {
 	
-	public static Image LoadTexture(String format, String path) {
+	public static Image LoadTexture(String path) {
 		try {
 			Image tmp = new Image(path);
 			return tmp;
@@ -35,7 +35,14 @@ public class FileHelper {
 			}
 		}
 		
-		return worldData;
+		int[][] tmp = new int[width][lines.length];
+		for (int i = 0; i < parts.length; i++) {
+			for (int j = 0; j < parts[i].length; j++) {
+				tmp[i][j] = worldData[i][-j+parts[i].length-1];
+			}
+		}
+		
+		return tmp;
 	}
 	
 	private static String[] OpenFile(String path) throws IOException {

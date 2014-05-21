@@ -6,7 +6,7 @@ import com.base.helpers.FileHelper;
 public class DefaultBlock extends Block {
 
 	public DefaultBlock() {
-		this.SetTexture(FileHelper.LoadTexture("PNG", "/res/blocks/default.png"));
+		this.SetTexture(FileHelper.LoadTexture("/res/blocks/default.png"));
 	}
 
 }

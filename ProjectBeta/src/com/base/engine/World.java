@@ -8,8 +8,8 @@ public class World {
 	ArrayList<GameObject> objs;
 
 	public World(int[][] worldData) {
-		this.data = worldData;
 		objs = new ArrayList<GameObject>();
+		this.data = worldData;
 		Block tmp = new Block();
 		tmp.InitBlocks();
 		
@@ -19,7 +19,7 @@ public class World {
 	private void LoadWorld() {
 		for (int i = 0; i < data.length; i++) {
 			for (int j = 0; j < data[i].length; j++) {
-				objs.add(new GameObject(i * 800/data.length, j * 600/data[i].length, Registry.Get(data[j][i])));
+				objs.add(new GameObject(i*32, j*32, Registry.Get(data[i][j])));
 			}
 		}
 	}

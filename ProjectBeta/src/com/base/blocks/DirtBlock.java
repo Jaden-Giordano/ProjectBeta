@@ -6,7 +6,7 @@ import com.base.helpers.FileHelper;
 public class DirtBlock extends Block {
 
 	public DirtBlock() {
-		this.SetTexture(FileHelper.LoadTexture("PNG", "/res/blocks/dirt.png"));
+		this.SetTexture(FileHelper.LoadTexture("/res/blocks/dirt.png"));
 	}
 
 }
