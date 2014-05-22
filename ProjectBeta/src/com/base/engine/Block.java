@@ -8,9 +8,9 @@ import static org.lwjgl.opengl.GL11.glVertex2f;
 
 import org.newdawn.slick.Image;
 
-import com.base.blocks.DefaultBlock;
-import com.base.blocks.DirtBlock;
-import com.base.blocks.StoneBlock;
+import com.base.game.blocks.DefaultBlock;
+import com.base.game.blocks.DirtBlock;
+import com.base.game.blocks.StoneBlock;
 
 public class Block {
 	

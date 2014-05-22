@@ -4,14 +4,17 @@ import java.util.ArrayList;
 
 public class World {
 	
-	int[][] data;
 	ArrayList<GameObject> objs;
+	
+	Camera cam;
+	
+	int[][] data;
 
 	public World(int[][] worldData) {
 		objs = new ArrayList<GameObject>();
 		this.data = worldData;
-		Block tmp = new Block();
-		tmp.InitBlocks();
+		
+		cam = new Camera(0, 0);
 		
 		LoadWorld();
 	}
@@ -19,9 +22,19 @@ public class World {
 	private void LoadWorld() {
 		for (int i = 0; i < data.length; i++) {
 			for (int j = 0; j < data[i].length; j++) {
-				objs.add(new GameObject(i*32, j*32, Registry.Get(data[i][j])));
+				objs.add(new GameObject(i*Registry.GetBlock(data[i][j]).GetTexture().getWidth(), j*Registry.GetBlock(data[i][j]).GetTexture().getHeight(),
+						Registry.GetBlock(data[i][j])));
 			}
 		}
+	}
+	
+	public void GetInput() {
+		if (cam.IsInViewportMode())
+			cam.GetInput();
+	}
+	
+	public void Update() {
+		cam.Update();
 	}
 	
 	public void Draw() {

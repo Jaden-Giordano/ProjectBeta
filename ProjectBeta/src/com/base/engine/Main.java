@@ -1,19 +1,6 @@
 package com.base.engine;
 
-import static org.lwjgl.opengl.GL11.GL_BLEND;
-import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
-import static org.lwjgl.opengl.GL11.GL_MODELVIEW;
-import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
-import static org.lwjgl.opengl.GL11.GL_PROJECTION;
-import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
-import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
-import static org.lwjgl.opengl.GL11.glBlendFunc;
-import static org.lwjgl.opengl.GL11.glClear;
-import static org.lwjgl.opengl.GL11.glClearColor;
-import static org.lwjgl.opengl.GL11.glEnable;
-import static org.lwjgl.opengl.GL11.glLoadIdentity;
-import static org.lwjgl.opengl.GL11.glMatrixMode;
-import static org.lwjgl.opengl.GL11.glOrtho;
+import static org.lwjgl.opengl.GL11.*;
 
 import java.io.IOException;
 
@@ -23,7 +10,12 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.newdawn.slick.SlickException;
 
+import com.base.game.Game;
+
 public class Main {
+	
+	public static final int SCREEN_WIDTH = 1280;
+	public static final int SCREEN_HEIGHT = 720;
 	
 	private static Game game;
 	
@@ -38,21 +30,22 @@ public class Main {
 	}
 
 	private static void InitDisplay() throws LWJGLException {
-		Display.setDisplayMode(new DisplayMode(800, 600));
+		Display.setDisplayMode(new DisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT));
 		Display.create();
+		Display.setVSyncEnabled(true);
 		Keyboard.create();
 	}
 
 	private static void InitGL() throws LWJGLException {
-		glEnable(GL_TEXTURE_2D);
-		
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		glOrtho(0, Display.getWidth(), 0, Display.getHeight(), -1, 1);
+		glOrtho(0, Display.getWidth(), Display.getHeight(), 0, -1, 1);
 		
 		glMatrixMode(GL_MODELVIEW);
 		
 		glEnable(GL_TEXTURE_2D);
+		glShadeModel(GL_SMOOTH);
+		glDisable(GL_DEPTH_TEST);
 		
 		glClearColor(0, 0, 0, 0);
 		
@@ -61,6 +54,8 @@ public class Main {
 	}
 
 	private static void InitGame() throws SlickException, IOException {
+		Block tmp = new Block();
+		tmp.InitBlocks();
 		game = new Game();
 	}
 

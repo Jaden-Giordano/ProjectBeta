@@ -5,6 +5,7 @@ import static org.lwjgl.opengl.GL11.*;
 public class GameObject {
 
 	float x, y;
+	
 	Block b;
 	boolean isBlock;
 	
@@ -24,7 +25,8 @@ public class GameObject {
 	public void Draw() {
 		glPushMatrix();
 			glTranslatef(x, y, 0);
-			b.Draw();
+			if (isBlock)
+				b.Draw();
 		glPopMatrix();
 	}
 

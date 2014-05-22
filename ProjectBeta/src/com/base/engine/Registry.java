@@ -10,7 +10,7 @@ public class Registry {
 		blocks.add(b);
 	}
 	
-	public static Block Get(int id) {
+	public static Block GetBlock(int id) {
 		for (Block i : blocks) {
 			if (i.GetID() == id) {
 				return i;
